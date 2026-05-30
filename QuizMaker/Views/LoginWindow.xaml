@@ -1,0 +1,44 @@
+﻿<Window x:Class="QuizMaker.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuizMaker.Views"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="750" Width="1000">
+    <Grid>
+        <Grid x:Name="GridLogin" Visibility="Visible" Background="#f0f0f0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">
+                <TextBlock Text="HỆ THỐNG THI TRẮC NGHIỆM" FontSize="20" FontWeight="Bold" TextAlignment="Center" Margin="0,0,0,20"/>
+
+                <TextBlock Text="Tên đăng nhập:" />
+                <TextBox x:Name="TxtUsername" Margin="0,5,0,10" Padding="5"/>
+
+                <TextBlock Text="Mật khẩu:" />
+                <PasswordBox x:Name="TxtPassword" Margin="0,5,0,10" Padding="5"/>
+
+                <TextBlock Text="Vai trò (chỉ dùng khi Đăng ký):" />
+                <ComboBox x:Name="CmbRole" Margin="0,5,0,20" Padding="5" SelectedIndex="0">
+                    <ComboBoxItem Content="Student" />
+                    <ComboBoxItem Content="Teacher" />
+                </ComboBox>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                    <Button Content="Đăng nhập" Width="120" Padding="10" Click="BtnLogin_Click" Background="#007ACC" Foreground="White" FontWeight="Bold" Margin="0,0,10,0"/>
+                    <Button Content="Đăng ký" Width="120" Padding="10" Click="BtnRegister_Click" Background="#28A745" Foreground="White" FontWeight="Bold"/>
+                </StackPanel>
+
+                <TextBlock Text="[Khu vực Test] Danh sách tài khoản đã đăng ký:" FontWeight="Bold" Foreground="Gray" Margin="0,10,0,5"/>
+                <DataGrid x:Name="DgUsersTest" AutoGenerateColumns="True" IsReadOnly="True" Height="150" Background="White"/>
+                <Button Content="Xóa tài khoản đã chọn"
+                    Width="180"
+                    Padding="8"
+                    Margin="0,10,0,0"
+                    Click="BtnDeleteTestUser_Click"
+                    Background="#DC3545"
+                    Foreground="White"
+                    FontWeight="Bold"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
