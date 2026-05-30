@@ -1,0 +1,50 @@
+﻿<Window x:Class="QuizMaker.Views.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuizMaker.Views"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="750" Width="1000">
+    <Grid>
+        <Grid x:Name="GridAdminDashboard" Background="White" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,0,15">
+                <TextBlock Text="ADMIN DASHBOARD - QUẢN LÝ TÀI KHOẢN" FontSize="22" FontWeight="Bold"/>
+                <Button Content="Đăng xuất" Width="100" HorizontalAlignment="Right" Padding="5" Click="BtnLogout_Click"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,15,0">
+                    <TextBlock Text="Thông tin tài khoản:" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBlock Text="Tên đăng nhập:" />
+                    <TextBox x:Name="TxtAdminManageUser" Margin="0,0,0,10" Padding="5"/>
+                    <TextBlock Text="Mật khẩu:" />
+                    <TextBox x:Name="TxtAdminManagePass" Margin="0,0,0,10" Padding="5"/>
+                    <TextBlock Text="Vai trò:" />
+                    <ComboBox x:Name="CmbAdminManageRole" Margin="0,0,0,20" Padding="5" SelectedIndex="0">
+                        <ComboBoxItem Content="Student" />
+                        <ComboBoxItem Content="Teacher" />
+                    </ComboBox>
+
+                    <Button Content="Thêm / Cập nhật User" Padding="10" Click="BtnAdminSaveUser_Click" Background="#28A745" Foreground="White" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <Button Content="Xóa User đã chọn" Padding="10" Click="BtnAdminDeleteUser_Click" Background="#DC3545" Foreground="White" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Danh sách Học sinh &amp; Giáo viên:" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <DataGrid x:Name="DgAdminUsersList" AutoGenerateColumns="True" IsReadOnly="True" Height="400" SelectionChanged="DgAdminUsersList_SelectionChanged"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
