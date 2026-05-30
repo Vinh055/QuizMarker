@@ -1,0 +1,33 @@
+﻿<Window x:Class="QuizMaker.Views.QuizExecutionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuizMaker.Views"
+        mc:Ignorable="d"
+        Title="QuizExecutionWindow" Height="750" Width="1000">
+    <Grid>
+        <Grid x:Name="GridQuiz" Background="White" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="LblQuizTitleDoing" Grid.Row="0" FontSize="22" FontWeight="Bold" Foreground="#007ACC" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="LblQuestionTitle" Grid.Row="1" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <StackPanel Grid.Row="2">
+                <TextBlock x:Name="LblQuestionText" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,15"/>
+                <Image x:Name="ImgQuestion" MaxHeight="200" Stretch="Uniform" Margin="0,0,0,15" Visibility="Collapsed"/>
+
+                <RadioButton x:Name="OptA" GroupName="Answers" Margin="0,5"/>
+                <RadioButton x:Name="OptB" GroupName="Answers" Margin="0,5"/>
+                <RadioButton x:Name="OptC" GroupName="Answers" Margin="0,5"/>
+                <RadioButton x:Name="OptD" GroupName="Answers" Margin="0,5"/>
+            </StackPanel>
+
+            <Button Grid.Row="3" Content="Câu tiếp theo / Nộp bài" HorizontalAlignment="Right" Padding="15,10" Click="BtnNextQuestion_Click" Background="#007ACC" Foreground="White" FontWeight="Bold"/>
+        </Grid>
+    </Grid>
+</Window>
