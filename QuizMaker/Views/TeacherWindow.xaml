@@ -1,0 +1,84 @@
+﻿<Window x:Class="QuizMaker.Views.TeacherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuizMaker.Views"
+        mc:Ignorable="d"
+        Title="TeacherWindow" Height="750" Width="1000">
+    <Grid>
+        <Grid x:Name="GridTeacherDashboard" Background="White" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,0,15">
+                <TextBlock Text="TEACHER DASHBOARD" FontSize="22" FontWeight="Bold"/>
+                <Button Content="Đăng xuất" Width="100" HorizontalAlignment="Right" Padding="5" Click="BtnLogout_Click"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,15,0">
+                    <TextBlock Text="Quản lý bài kiểm tra:" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <ListBox x:Name="LstTeacherQuizzes" Height="150" DisplayMemberPath="Title" SelectionChanged="LstTeacherQuizzes_SelectionChanged" Margin="0,0,0,10"/>
+
+                    <TextBox x:Name="TxtNewQuizName" Padding="5" Margin="0,0,0,5" Text="Tên bài mới..."/>
+                    <CheckBox x:Name="ChkHasTimeLimit" Content="Có giới hạn thời gian mở/đóng" Margin="0,0,0,5" Checked="ChkHasTimeLimit_CheckedChanged" Unchecked="ChkHasTimeLimit_CheckedChanged"/>
+
+                    <StackPanel x:Name="PanelTimeLimits" IsEnabled="False">
+                        <TextBlock Text="Mở bài (vd: 2023-12-01 19:00):"/>
+                        <TextBox x:Name="TxtOpenTime" Padding="5" Margin="0,0,0,5"/>
+                        <TextBlock Text="Đóng bài (vd: 2023-12-01 20:00):"/>
+                        <TextBox x:Name="TxtCloseTime" Padding="5" Margin="0,0,0,10"/>
+                    </StackPanel>
+
+                    <CheckBox x:Name="ChkShuffle" Content="Trộn đề tự động" Margin="0,0,0,10"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                        <Button Content="Tạo / Cập nhật" Width="100" Padding="8" Click="BtnAddOrUpdateQuiz_Click" Background="#28A745" Foreground="White" Margin="0,0,10,0"/>
+                        <Button Content="Xóa bài chọn" Width="100" Padding="8" Click="BtnDeleteQuiz_Click" Background="#DC3545" Foreground="White"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Xem Thống Kê" Width="100" Padding="8" Click="BtnViewStats_Click" Background="#17A2B8" Foreground="White" Margin="0,0,10,0"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="LblSelectedQuizQuestions" Text="Câu hỏi trong bài: (Chưa chọn bài)" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="Tải Word (.docx)" Padding="8" Click="BtnUploadDoc_Click" Margin="0,0,10,0" Background="#007ACC" Foreground="White"/>
+                        <Button Content="Đính kèm ảnh câu chọn" Padding="8" Click="BtnUploadImage_Click" Background="#6C757D" Foreground="White"/>
+                    </StackPanel>
+                    <DataGrid x:Name="DgQuestions" AutoGenerateColumns="False" IsReadOnly="True" Height="400">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Câu số" Binding="{Binding Title}" Width="0.6*"/>
+                            <DataGridTextColumn Header="Nội dung câu hỏi" Binding="{Binding Text}" Width="2*"/>
+                            <DataGridTextColumn Header="Đáp án A" Binding="{Binding Options[0]}" Width="1*"/>
+                            <DataGridTextColumn Header="Đáp án B" Binding="{Binding Options[1]}" Width="1*"/>
+                            <DataGridTextColumn Header="Đáp án C" Binding="{Binding Options[2]}" Width="1*"/>
+                            <DataGridTextColumn Header="Đáp án D" Binding="{Binding Options[3]}" Width="1*"/>
+                            <DataGridTextColumn Header="Đáp án Đúng" Binding="{Binding CorrectAnswer}" Width="0.8*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="GridTeacherStats" Visibility="Collapsed" Background="White" Margin="20">
+            <StackPanel>
+                <TextBlock Text="THỐNG KÊ KẾT QUẢ" FontSize="22" FontWeight="Bold" Margin="0,0,0,15"/>
+                <TextBlock x:Name="LblStatSummary" FontSize="16" Margin="0,0,0,20"/>
+                <TextBlock Text="Chi tiết học sinh:" FontWeight="Bold" Margin="0,0,0,5"/>
+                <DataGrid x:Name="DgStats" AutoGenerateColumns="True" IsReadOnly="True" Height="300" Margin="0,0,0,20"/>
+                <Button Content="Quay lại" Width="150" Padding="10" Click="BtnBackToTeacherDash_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
