@@ -76,7 +76,14 @@
                 <TextBlock Text="THỐNG KÊ KẾT QUẢ" FontSize="22" FontWeight="Bold" Margin="0,0,0,15"/>
                 <TextBlock x:Name="LblStatSummary" FontSize="16" Margin="0,0,0,20"/>
                 <TextBlock Text="Chi tiết học sinh:" FontWeight="Bold" Margin="0,0,0,5"/>
-                <DataGrid x:Name="DgStats" AutoGenerateColumns="True" IsReadOnly="True" Height="300" Margin="0,0,0,20"/>
+                <DataGrid x:Name="DgStats" AutoGenerateColumns="False" IsReadOnly="True" Height="300" Margin="0,0,0,20">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tài khoản Học sinh" Binding="{Binding StudentUsername}" Width="1.5*"/>
+                        <DataGridTextColumn Header="Tên bài thi" Binding="{Binding QuizTitle}" Width="1*"/>
+                        <DataGridTextColumn Header="Điểm số" Binding="{Binding Score}" Width="1*"/>
+                        <DataGridTextColumn Header="Thời gian nộp bài" Binding="{Binding TakenAt, StringFormat=\{0:dd/MM/yyyy HH:mm\}}" Width="2*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
                 <Button Content="Quay lại" Width="150" Padding="10" Click="BtnBackToTeacherDash_Click"/>
             </StackPanel>
         </Grid>
